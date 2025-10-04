@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -22,52 +24,17 @@ class DrawingPanel extends JPanel {
         setBackground(Color.BLACK);
         setFocusable(true);
 
-        // // Mouse input
-        // addMouseListener(new MouseAdapter() {
-        //     @Override
-        //     public void mousePressed(MouseEvent e) {
-        //         drawing = true;
-        //         points.add(e.getPoint());
-        //         repaint();
-        //     }
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (e.getButton() == MouseEvent.BUTTON1) {
+                    drawing = true;
+                    points.add(e.getPoint());
+                } 
+                repaint();
+            }
+        });
 
-        //     @Override
-        //     public void mouseReleased(MouseEvent e) {
-        //         drawing = false;
-        //     }
-        // });
-
-        // addMouseMotionListener(new MouseMotionAdapter() {
-        //     @Override
-        //     public void mouseDragged(MouseEvent e) {
-        //         if (drawing) {
-        //             points.add(e.getPoint());
-        //             repaint();
-        //         }
-        //     }
-        // });
-
-        // Keyboard input
-        // addKeyListener(new KeyAdapter() {
-        //     @Override
-        //     public void keyPressed(KeyEvent e) {
-        //         switch (e.getKeyCode()) {
-        //             case KeyEvent.VK_R:
-        //                 round++;
-        //                 repaint();
-        //                 break;
-        //             case KeyEvent.VK_E:
-        //                 error = !error;
-        //                 repaint();
-        //                 break;
-        //             case KeyEvent.VK_C:
-        //                 points.clear();
-        //                 repaint();
-        //                 break;
-        //         }
-        //     }
-        // });
-        repaint();
     }
 
     @Override
