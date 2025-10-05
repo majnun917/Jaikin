@@ -1,5 +1,3 @@
-import javax.swing.JPanel;
-import javax.swing.Timer;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -12,6 +10,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class DrawingPanel extends JPanel {
 
@@ -63,6 +63,16 @@ public class DrawingPanel extends JPanel {
                             g2d.drawLine(p1.x, p1.y, p2.x, p2.y);
                         }
                     }
+                }else if (e.getKeyCode() == KeyEvent.VK_C) {
+                    controlPoints.clear();
+                    smoothedPoints.clear();
+                    isAnimating = false;
+                    currentIteration = 0;
+                    if (animationTimer != null && animationTimer.isRunning()) {
+                        animationTimer.stop();
+                    }
+                    repaint();
+                    
                 }
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     System.exit(0);
