@@ -50,7 +50,7 @@ public class DrawingPanel extends JPanel {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER && !isAnimating) {
                     if (controlPoints.size() == 0) {
                         g2d.setColor(Color.red);
-                        g2d.drawString("ADD AT LEAST ONE POINT BEFORE STARTING THE ANIMATION", 10, 120);
+                        g2d.drawString("ADD AT LEAST ONE POINT!", 10, 120);
                     }
                     if (controlPoints.size() <= 2) {
                         isAnimating = false;
