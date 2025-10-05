@@ -1,3 +1,5 @@
+package jaikin;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -16,7 +18,7 @@ import javax.swing.Timer;
 public class DrawingPanel extends JPanel {
 
     private static final int MAX_ITERATIONS = 7;
-    private static final int ANIMATION_DELAY = 500;
+    private static final int ANIMATION_DELAY = 700;
 
     private final List<Point> controlPoints = new ArrayList<>();
     private List<Point> smoothedPoints = new ArrayList<>();
@@ -48,7 +50,7 @@ public class DrawingPanel extends JPanel {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER && !isAnimating) {
                     if (controlPoints.size() == 0) {
                         g2d.setColor(Color.red);
-                        g2d.drawString("ADD AT LEAST ONE POINT BEFORE STARTING THE ANIMATION", 10, 80);
+                        g2d.drawString("ADD AT LEAST ONE POINT BEFORE STARTING THE ANIMATION", 10, 120);
                     }
                     if (controlPoints.size() <= 2) {
                         isAnimating = false;
@@ -63,7 +65,7 @@ public class DrawingPanel extends JPanel {
                             g2d.drawLine(p1.x, p1.y, p2.x, p2.y);
                         }
                     }
-                }else if (e.getKeyCode() == KeyEvent.VK_C) {
+                } else if (e.getKeyCode() == KeyEvent.VK_C) {
                     controlPoints.clear();
                     smoothedPoints.clear();
                     isAnimating = false;
@@ -72,7 +74,6 @@ public class DrawingPanel extends JPanel {
                         animationTimer.stop();
                     }
                     repaint();
-                    
                 }
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     System.exit(0);
@@ -107,7 +108,13 @@ public class DrawingPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.BLUE);
-        g2d.drawString("USING TWO POINTS AT LEAST TO START DRAWING. ESC TO EXIT THE PROGRAM", 10, 60);
+        if (controlPoints.isEmpty()) {
+            g2d.setColor(Color.WHITE);
+            g2d.drawString("Using two points at least to start drawing. Three or more to start the animation.", 10, 60);
+            g2d.drawString("ENTER to start the animation, and C to clear the screen.", 10, 80);
+            g2d.drawString("ESC to exit the program.", 10, 100);
+        }
+
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         g2d.setColor(Color.ORANGE);
