@@ -33,7 +33,7 @@ We repeat the process: we can reapply the algorithm to the new polygon. With eac
 
 ## Compilation & Run
 ```sh
-    javac -build Main.java
+    javac -d build Main.java
     java -cp build Main
 ```
 ## Collaborators
