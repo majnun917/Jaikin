@@ -82,7 +82,7 @@ public class DrawingPanel extends JPanel {
     private void setupAnimationTimer() {
         animationTimer = new Timer(ANIMATION_DELAY, e -> {
             if (currentIteration >= MAX_ITERATIONS) {
-                currentIteration = 0;
+                currentIteration = 1;
                 smoothedPoints = new ArrayList<>(controlPoints);
             } else {
                 currentIteration++;
